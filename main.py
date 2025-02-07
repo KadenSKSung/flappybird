@@ -17,6 +17,9 @@ while running:
     screen.fill("#6ac8f5")
 
     # RENDER YOUR GAME HERE
+    
+    # draw the bird
+    pygame.draw.rect(screen, "purple", (25, 360 - 25, 50, 50))
 
     # flip() the display to put your work on screen
     pygame.display.flip()
