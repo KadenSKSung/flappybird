@@ -16,12 +16,16 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                bird.jump()
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("#6ac8f5")
 
     # RENDER YOUR GAME HERE
     bird.draw(screen)
+    bird.apply_velocity()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
