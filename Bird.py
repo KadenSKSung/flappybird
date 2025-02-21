@@ -16,6 +16,10 @@ class Bird:
         if self.height < 25:
             self.velocity = 0
             self.height = 25
+        
+        elif self.height > 695:
+            self.velocity = 0
+            self.height = 695
     
     def jump(self):
         self.velocity = 5
