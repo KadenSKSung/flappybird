@@ -1,5 +1,6 @@
 import pygame
 from Bird import Bird
+from Pipe import Pipe
 
 # pygame setup
 pygame.init()
@@ -9,6 +10,10 @@ running = True
 
 # game setup
 bird = Bird()
+pipe = Pipe(200)
+pipe2 = Pipe(600)
+pipe3 = Pipe(1000)
+pipe4 = Pipe(1400)
 
 while running:
     # poll for events
@@ -26,6 +31,14 @@ while running:
     # RENDER YOUR GAME HERE
     bird.draw(screen)
     bird.apply_velocity()
+    pipe.draw(screen)
+    pipe2.draw(screen)
+    pipe3.draw(screen)
+    pipe4.draw(screen)
+    pipe.move()
+    pipe2.move()
+    pipe3.move()
+    pipe4.move()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
