@@ -9,11 +9,14 @@ clock = pygame.time.Clock()
 running = True
 
 # game setup
+bird_alive = True
 bird = Bird()
-pipe = Pipe(200)
-pipe2 = Pipe(600)
-pipe3 = Pipe(1000)
-pipe4 = Pipe(1400)
+pipes = [
+    # Pipe(200),
+    Pipe(600),
+    Pipe(1000),
+    Pipe(1400)
+]
 
 while running:
     # poll for events
@@ -29,16 +32,15 @@ while running:
     screen.fill("#6ac8f5")
 
     # RENDER YOUR GAME HERE
-    bird.draw(screen)
-    bird.apply_velocity()
-    pipe.draw(screen)
-    pipe2.draw(screen)
-    pipe3.draw(screen)
-    pipe4.draw(screen)
-    pipe.move()
-    pipe2.move()
-    pipe3.move()
-    pipe4.move()
+    if bird.collides_with(pipes):
+        bird_alive = False
+
+    if bird_alive:
+        bird.draw(screen)
+        bird.apply_velocity()
+    for pipe in pipes:
+        pipe.draw(screen)
+        pipe.move()
 
     # flip() the display to put your work on screen
     pygame.display.flip()

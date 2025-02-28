@@ -12,7 +12,6 @@ class Pipe:
         self.y = random.randint(100, 620)
 
     def draw(self, screen):
-        # draw the bird
         pygame.draw.rect(screen, "green", (
             self.x - PIPE_LIP_WIDTH / 2,
             self.y - PIPE_GAP / 2 - PIPE_LIP_HEIGHT,
@@ -46,3 +45,19 @@ class Pipe:
 
         if self.x < -PIPE_LIP_WIDTH:
             self.x = 1280 + PIPE_LIP_WIDTH
+    
+    def get_hitbox(self):
+        return (
+            (
+                self.x - PIPE_WIDTH / 2,
+                0,
+                PIPE_WIDTH,
+                self.y - PIPE_GAP / 2
+            ),
+            (
+                self.x - PIPE_WIDTH / 2,
+                self.y + PIPE_GAP / 2,
+                PIPE_WIDTH,
+                720 - (self.y + PIPE_GAP / 2)
+            )
+        )
