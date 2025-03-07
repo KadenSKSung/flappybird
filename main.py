@@ -10,6 +10,7 @@ running = True
 
 # game setup
 bird_alive = True
+started = False
 bird = Bird()
 pipes = [
     # Pipe(200),
@@ -26,6 +27,7 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
+                started = True
                 bird.jump()
 
     # fill the screen with a color to wipe away anything from last frame
@@ -37,10 +39,12 @@ while running:
 
     if bird_alive:
         bird.draw(screen)
-        bird.apply_velocity()
+        if started:
+            bird.apply_velocity()
     for pipe in pipes:
         pipe.draw(screen)
-        pipe.move()
+        if started:
+            pipe.move()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
