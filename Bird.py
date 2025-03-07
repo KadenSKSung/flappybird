@@ -30,6 +30,13 @@ class Bird:
         self.velocity = 5
     
     def collides_with(self, pipes):
+        # if the bird is touching the top or bottom, return True immediately becuase they are dead
+        if self.height == BIRD_RADIUS:
+            return True
+        
+        elif self.height == BIRD_HEIGHT:
+            return True
+
         for theta in range(-45, 225):
             # convert to radians
             theta = (theta * math.pi) / 180
