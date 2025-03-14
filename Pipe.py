@@ -44,7 +44,7 @@ class Pipe:
         self.x -= 3
 
         if self.x < -PIPE_LIP_WIDTH:
-            self.x = 1280 + PIPE_LIP_WIDTH
+            self.x = 1282 + PIPE_LIP_WIDTH
     
     def get_hitbox(self):
         return (

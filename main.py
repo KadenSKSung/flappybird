@@ -7,6 +7,7 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 font100 = pygame.font.SysFont("Arial", 100)
+font60 = pygame.font.SysFont("Arial", 60)
 font30 = pygame.font.SysFont("Arial", 30)
 running = True
 
@@ -16,16 +17,18 @@ text_gameover = font100.render("Game Over", True, "red")
 text_gameover_pos = (640 - text_gameover.get_width()/2, 360 - text_gameover.get_height()/2)
 text_scoreboard = font30.render("0", True, "black")
 text_scoreboard_pos = (1270 - text_scoreboard.get_width(), 10)
+text_again = font60.render("Play Again", True, "black")
+text_again_pos = (640 - text_again.get_width()/2, 490 - text_gameover.get_height()/2)
 
 # game setup
 bird_alive = True
 started = False
 bird = Bird()
 pipes = [
-    Pipe(600),
-    Pipe(1000),
+    Pipe(602),
+    Pipe(1001),
     Pipe(1400),
-    Pipe(1800),
+    Pipe(1760),
 ]
 score = 0
 
@@ -49,8 +52,11 @@ while running:
 
     for pipe in pipes:
         pipe.draw(screen)
-        if started:
+        if started and bird_alive:
             pipe.move()
+        if pipe.x == 50 and bird_alive:
+            score += 1
+    
 
     if bird_alive:
         bird.draw(screen)
@@ -58,10 +64,10 @@ while running:
             bird.apply_velocity()
     else:
         screen.blit(text_gameover, text_gameover_pos)
+        screen.blit(text_again, text_again_pos)
     
     screen.blit(text_scoreboard, text_scoreboard_pos)
 
-    score += 1
     text_scoreboard = font30.render(str(score), True, "black")
     text_scoreboard_pos = (1270 - text_scoreboard.get_width(), 10)
 
