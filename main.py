@@ -6,8 +6,8 @@ from Pipe import Pipe
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
-font100 = pygame.font.SysFont("Arial", 100)
-font60 = pygame.font.SysFont("Arial", 60)
+font100 = pygame.font.Font("FlappyBirdy.ttf", 100)
+font60 = pygame.font.Font("FlappyBirdy.ttf", 60)
 font30 = pygame.font.SysFont("Arial", 30)
 running = True
 
