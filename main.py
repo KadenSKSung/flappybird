@@ -19,6 +19,7 @@ text_scoreboard = font30.render("0", True, "black")
 text_scoreboard_pos = (1270 - text_scoreboard.get_width(), 10)
 text_again = font60.render("Play Again", True, "black")
 text_again_pos = (640 - text_again.get_width()/2, 490 - text_gameover.get_height()/2)
+text_again_size = (text_again.get_width(), text_again.get_height())
 
 # game setup
 bird_alive = True
@@ -38,6 +39,25 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            px, py = event.pos
+            if (
+                px > text_again_pos[0] and
+                py > text_again_pos[1] and
+                px < text_again_pos[0] + text_again_size[0] and
+                py < text_again_pos[1] + text_again_size[1]
+            ) and not bird_alive:
+                # reset the player
+                bird_alive = True
+                started = False
+                bird = Bird()
+                pipes = [
+                    Pipe(602),
+                    Pipe(1001),
+                    Pipe(1400),
+                    Pipe(1760),
+                ]
+                score = 0   
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 started = True
